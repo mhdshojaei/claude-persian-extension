@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" />
+  <title>Claude RTL + Vazir</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 280px;
+      font-family: 'Vazirmatn', system-ui, sans-serif;
+      background: #0f0f0f;
+      color: #e8e8e8;
+      padding: 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #cc785c, #bf5e3b);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    header p {
+      font-size: 11px;
+      color: #888;
+      margin-top: 1px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .toggle-row:last-of-type { border-bottom: none; }
+
+    .label-group { display: flex; flex-direction: column; gap: 2px; }
+
+    .label-group span:first-child {
+      font-size: 13px;
+      font-weight: 500;
+      color: #e0e0e0;
+    }
+
+    .label-group span:last-child {
+      font-size: 11px;
+      color: #666;
+    }
+
+    /* Toggle switch */
+    .switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #333;
+      border-radius: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      left: 3px;
+      top: 3px;
+      background: #888;
+      border-radius: 50%;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    input:checked + .slider { background: #cc785c33; }
+    input:checked + .slider::before { transform: translateX(18px); background: #cc785c; }
+
+    .disabled-notice {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #555;
+      text-align: center;
+      display: none;
+    }
+
+    .disabled-notice.show { display: block; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ف</div>
+    <div>
+      <h1>Claude RTL + Vazir</h1>
+      <p>فونت وزیر و راست‌چین برای Claude</p>
+    </div>
+  </header>
+
+  <div class="toggle-row">
+    <div class="label-group">
+      <span>فعال</span>
+      <span>روشن/خاموش کردن همه چیز</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle-enabled" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-row">
+    <div class="label-group">
+      <span>RTL خودکار</span>
+      <span>تشخیص فارسی و اعمال راست‌چین</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle-auto-rtl" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-row">
+    <div class="label-group">
+      <span>RTL اجباری</span>
+      <span>همه متن‌ها راست‌چین شوند</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="toggle-force-rtl" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="disabled-notice" id="disabled-notice">
+    اکستنشن غیرفعال است — صفحه را رفرش کنید تا تغییرات اعمال شوند.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
